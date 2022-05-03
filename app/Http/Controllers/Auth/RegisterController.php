@@ -68,6 +68,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'role' => 'user',
+            'image' => 'default.png',   
             'name' => $data['name'],
             'surname' => $data['surname'],
             'nick' => $data['nick'],

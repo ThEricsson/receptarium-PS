@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('user.update')}}">
+            <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">
@@ -67,6 +67,28 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Fotografia de perfil') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" autocomplete="avatar">
+
+                        @error('avatar')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                        <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Fotografia actual') }}</label>
+
+                    <div class="col-md-6">
+                        <img class="showavatar" src="{{ route('user.getavatar', ['filename'=>Auth::user()->image]) }}">
                     </div>
                 </div>
 

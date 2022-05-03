@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\Rules\ComprovaContrasenya;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 class UserController extends Controller{
 
@@ -19,7 +18,7 @@ class UserController extends Controller{
     |--------------------------------------------------------------------------
     |
     | Aquest controlador s'encarrega de validar les actualitzacions de
-    | les dades de l'usuari i del canvi de contrasenya
+    | les dades de l'usuari, del canvi de contrasenya i de la cerca d'avatars.
     | 
     |
     */
@@ -38,6 +37,8 @@ class UserController extends Controller{
     /**
      * Valida les dades introduïdes per l'usuari abans d'actualitzar-les.
      * 
+     * @param request
+     * 
      * @return void
      */
     public function update(Request $request){
@@ -49,8 +50,20 @@ class UserController extends Controller{
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'nick' => 'required|string|max:255|unique:users,nick,'.$id,
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'avatar' =>['image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000']
         ]);
+     
+        $image_path = $request->file('avatar');
+
+        if($image_path){
+
+            $path = $image_path->store('users');
+
+            $avatarname = preg_replace('/^.+[\\\\\\/]/', '', $path);
+
+            $user->image = $avatarname;
+        }
 
         $user->name=$request->input('name');
         $user->surname=$request->input('surname');
@@ -66,6 +79,8 @@ class UserController extends Controller{
     /**
      * Valida que l'usuari conegui la contrasenya antiga i la canvia per la nova.
      * 
+     * @param request
+     * 
      * @return void
      */
     public function updatepass(Request $request){
@@ -80,11 +95,6 @@ class UserController extends Controller{
 
         ]);
 
-        /* Enviar un missatge si falla la validacó
-        if($validator->fails()) {
-            return Redirect::back()->withErrors($validator);
-        }*/
-
         $user->password = Hash::make($request->new_password);
 
         $user->update();
@@ -92,6 +102,20 @@ class UserController extends Controller{
         return redirect()->route('user.editpass')
                          ->with(['message'=>'Contrasenya actualitzada correctament!']);
 
+    }
+
+    /**
+     * Retorna l'avatar de l'usuari.
+     * 
+     * @param filename
+     * 
+     * @return file
+     */
+    public function getAvatar($filename){
+        
+        $file = Storage::disk('users')->get($filename);
+        
+        return new Response($file,200);
     }
 
 }

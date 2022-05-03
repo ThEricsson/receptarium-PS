@@ -11,12 +11,6 @@
                 </div>
             @endif
 
-            @foreach ($errors->all() as $error)
-
-                <p class="text-danger">{{ $error }}</p>
-
-            @endforeach 
-
             <form method="POST" action="{{ route('user.updatepass')}}">
                 @csrf
 

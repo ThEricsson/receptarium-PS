@@ -27,6 +27,6 @@ class ComprovaContrasenya implements Rule
      */
     public function message()
     {
-        return "L'atribut :attribute amb la contrasenya antiga.";
+        return "La contrasenya antiga no és correcta.";
     }
 }

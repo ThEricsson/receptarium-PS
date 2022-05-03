@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
+
+Route::get('/', function () {
+    return redirect('home');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -34,4 +34,12 @@ Route::prefix('/user')->name('user.')->group(function(){
     })->name('editpass');
 
     Route::post('/updatepass', [App\Http\Controllers\UserController::class, 'updatepass'])->name('updatepass');
+
+    Route::get('/getavatar/{filename}', [App\Http\Controllers\UserController::class, 'getAvatar'])->name('getavatar');
+});
+
+Route::prefix('/post')->name('post.')->group(function(){
+    Route::get('/crear', function(){
+        return view('post.crear');
+    })->name('crear');
 });

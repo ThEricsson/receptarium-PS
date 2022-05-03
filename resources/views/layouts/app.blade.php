@@ -15,9 +15,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -52,32 +55,46 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nick }}
+                        
+                        <div class="row">
+                            <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center ">
+                                <a href="">
+                                    <span class="material-icons">&#xe145;</span>
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    
-                                    <a class="dropdown-item" href="{{route('user.edit')}}">
-                                        {{_('Editar usuari')}}
+                            </div>
+                            <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center">
+                                <img class="avatar" src="{{ route('user.getavatar', ['filename'=>Auth::user()->image]) }}">
+                            </div>
+                            <div class="col-4 m-0 p-0">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->nick }}
                                     </a>
-
-                                    <a class="dropdown-item" href="{{route('user.editpass')}}">
-                                        {{_('Canviar contrasenya')}}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        
+                                        <a class="dropdown-item" href="{{route('user.edit')}}">
+                                            {{_('Editar usuari')}}
+                                        </a>
+    
+                                        <a class="dropdown-item" href="{{route('user.editpass')}}">
+                                            {{_('Canviar contrasenya')}}
+                                        </a>
+    
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                            
                         @endguest
                     </ul>
                 </div>
