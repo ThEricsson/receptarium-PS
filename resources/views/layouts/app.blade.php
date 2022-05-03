@@ -59,8 +59,12 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="{{route('user.editar')}}">
+                                    <a class="dropdown-item" href="{{route('user.edit')}}">
                                         {{_('Editar usuari')}}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{route('user.editpass')}}">
+                                        {{_('Canviar contrasenya')}}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            {{ __('You are logged in!') }}
+            {{ __('No hi ha cap recepta publicada') }}
         </div>
     </div>
 @endsection
