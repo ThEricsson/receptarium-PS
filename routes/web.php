@@ -39,7 +39,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 });
 
 Route::prefix('/post')->name('post.')->group(function(){
-    Route::get('/crear', function(){
-        return view('post.crear');
-    })->name('crear');
+    Route::get('/create', function(){
+        return view('post.create');
+    })->name('create');
 });

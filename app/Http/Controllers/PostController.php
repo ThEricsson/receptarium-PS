@@ -21,7 +21,7 @@ class PostController extends Controller{
     |
     */
 
-    public function update(Request $request){
+    public function create(Request $request){
 
     }
 

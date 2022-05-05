@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/sripts.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -58,7 +59,7 @@
                         
                         <div class="row">
                             <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center ">
-                                <a href="">
+                                <a href="{{ route( 'post.create') }}">
                                     <span class="material-icons">&#xe145;</span>
                                 </a>
                             </div>
