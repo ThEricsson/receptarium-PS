@@ -10,8 +10,9 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script type="module" src="{{ asset('js/sripts.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/sripts.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

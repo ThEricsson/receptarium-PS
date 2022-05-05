@@ -1,23 +1,28 @@
-import Vue from 'vue';
-
+/**
+ * Aplicació per fer inputs dinàmics al formulari
+ */
 Vue.createApp({
     data() {
         return {
-            courses: [{
-                courseName: "",
+            passos: [{
+                pasName: ""
             }, ],
+            actual: 1,
         };
     },
     methods: {
         addMore() {
-            console.log("hola")
-            /*
-            this.courses.push({
-                courseName: "",
-            });*/
+            this.passos.push({
+                pasName: "",
+            });
+            this.actual += 1
         },
         remove(index) {
-            this.courses.splice(index, 1);
+            this.passos.splice(index, 1);
+            this.actual -= 1
         },
+        checkPas() {
+            return this.actual == 20
+        }
     },
-}).mount('#assignment')
+}).mount('#dynamicsteps')

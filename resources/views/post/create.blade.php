@@ -46,27 +46,46 @@
                     <label for="passos" class="col-md-4 col-form-label text-md-end">{{ __('Passos de la recepta') }}</label>
 
                     <div class="col-md-6">
-                        <div>
+                        <div class="p-1 input-group" v-for="(pas, index) in passos" :key='index'>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@{{index + 1}}</span>
+                              </div>
                             <input type="text" class="form-control @error('titol') is-invalid @enderror" name="passos"  
-                            v-model="course.courseName"
-                            placeholder="Introdueix el pas de la recepta"
-                            required>
-
-                            <button
+                            v-model="pas.paseName"
+                            required
+                            >
+                            <span class="input-group-btn">
+                                <button
                                 type="button"
-                                class="mt-2 btn btn-danger"
+                                class="btn btn-danger"
                                 v-on:click="remove(index)"
                                 v-show="index != 0"
-                            >Eliminar</button>
+                            >Eliminar</button> 
+                            </span>
                         </div>
 
                         <button
                             type="button"
                             class="mt-2 btn btn-success"
                             v-on:click="addMore()"
-                        > Afegir pas</button>
+                            :disabled="checkPas()"
+                        > Afegir pas nou</button>
 
                         @error('passos')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="recefotos" class="col-md-4 col-form-label text-md-end">{{ __('Fotografies de la recepta') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="recefotos" type="file" class="form-control @error('recefotos') is-invalid @enderror" name="recefotos" autocomplete="recefotos">
+
+                        @error('avatar')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
