@@ -42,4 +42,6 @@ Route::prefix('/post')->name('post.')->group(function(){
     Route::get('/create', function(){
         return view('post.create');
     })->name('create');
+
+    Route::post('/upload', [App\Http\Controllers\PostController::class, 'create'])->name('upload');
 });

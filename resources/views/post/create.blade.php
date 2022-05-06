@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('post.create')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('post.upload')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">
@@ -32,7 +32,7 @@
                     <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripció recepta') }}</label>
 
                     <div class="col-md-6">
-                        <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="9" required autocomplete="description"></textarea>
+                        <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="6" required autocomplete="description"></textarea>
 
                         @error('description')
                             <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">@{{index + 1}}</span>
                               </div>
-                            <input type="text" class="form-control @error('titol') is-invalid @enderror" name="passos"  
+                            <input type="text" class="form-control @error('titol') is-invalid @enderror" name="passos[]"  
                             v-model="pas.paseName"
                             required
                             >
