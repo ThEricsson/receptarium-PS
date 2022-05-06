@@ -104,18 +104,4 @@ class UserController extends Controller{
 
     }
 
-    /**
-     * Retorna l'avatar de l'usuari.
-     * 
-     * @param filename
-     * 
-     * @return file
-     */
-    public function getAvatar($filename){
-        
-        $file = Storage::disk('users')->get($filename);
-        
-        return new Response($file,200);
-    }
-
 }

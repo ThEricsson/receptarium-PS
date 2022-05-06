@@ -34,8 +34,6 @@ Route::prefix('/user')->name('user.')->group(function(){
     })->name('editpass');
 
     Route::post('/updatepass', [App\Http\Controllers\UserController::class, 'updatepass'])->name('updatepass');
-
-    Route::get('/getavatar/{filename}', [App\Http\Controllers\UserController::class, 'getAvatar'])->name('getavatar');
 });
 
 Route::prefix('/post')->name('post.')->group(function(){
@@ -44,4 +42,13 @@ Route::prefix('/post')->name('post.')->group(function(){
     })->name('create');
 
     Route::post('/upload', [App\Http\Controllers\PostController::class, 'create'])->name('upload');
+
+});
+
+Route::prefix('/image')->name('image.')->group(function(){
+
+    Route::get('/getavatar/{filename}', [App\Http\Controllers\ImageController::class, 'getAvatar'])->name('getavatar');
+
+    Route::get('/getpostimg/{filename}', [App\Http\Controllers\ImageController::class, 'getPostImg'])->name('getpostimg');
+
 });

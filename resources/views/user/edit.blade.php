@@ -88,7 +88,7 @@
                         <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Fotografia actual') }}</label>
 
                     <div class="col-md-6">
-                        <img class="showavatar" src="{{ route('user.getavatar', ['filename'=>Auth::user()->image]) }}">
+                        <img class="showavatar" src="{{ route('image.getavatar', ['filename'=>Auth::user()->image]) }}">
                     </div>
                 </div>
 

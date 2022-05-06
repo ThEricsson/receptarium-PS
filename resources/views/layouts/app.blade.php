@@ -65,7 +65,7 @@
                                 </a>
                             </div>
                             <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center">
-                                <img class="avatar" src="{{ route('user.getavatar', ['filename'=>Auth::user()->image]) }}">
+                                <img class="avatar" src="{{ route('image.getavatar', ['filename'=>Auth::user()->image]) }}">
                             </div>
                             <div class="col-4 m-0 p-0">
                                 <li class="nav-item dropdown">
