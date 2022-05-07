@@ -14,8 +14,8 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $data = Post::orderBy('id', 'desc')->paginate(5);
+    $posts = Post::orderBy('id', 'desc')->paginate(5);
         
-        return view('home',compact('data'));
+        return view('home',compact('posts'));
     }
 }

@@ -6,7 +6,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name') }}</title>
 
     <!-- Scripts -->
@@ -23,13 +22,16 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url('images/logo.png') }}">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav style="background-color: #688f64;" class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name') }}
+                    <img style="width: 5em" src="{{ asset('/images/logoletters.png') }}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -59,9 +61,9 @@
                         @else
                         
                         <div class="row">
-                            <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center ">
+                            <div class="col-4 m-0 p-0 align-middle d-flex align-items-center justify-content-center ">
                                 <a href="{{ route( 'post.create') }}">
-                                    <span class="material-icons">&#xe145;</span>
+                                    <span style="color: black;" class="material-icons">&#xe145;</span>
                                 </a>
                             </div>
                             <div class="col-4 m-0 p-0 d-flex aligns-items-center justify-content-center">
@@ -103,11 +105,14 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main style="background-color: #e8e8e8;" class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-11">
-                        @yield('content')
+                        <div class="card">
+                            <div class="card-header headercustom">@yield('title')</div>
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
             </div>
