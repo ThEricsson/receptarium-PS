@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,26 +24,26 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('/user')->name('user.')->group(function(){
-    Route::get('/edit', function(){
-        return view('user.edit');
-    })->name('edit');
+    Route::view('/edit', 'user.edit')->name('edit');
 
     Route::post('/update', [App\Http\Controllers\UserController::class, 'update'])->name('update');
 
-    Route::get('/editpass', function(){
-        return view('user.editpass');
-    })->name('editpass');
+    Route::view('/editpass', 'user.editpass')->name('editpass');
 
     Route::post('/updatepass', [App\Http\Controllers\UserController::class, 'updatepass'])->name('updatepass');
 });
 
 Route::prefix('/post')->name('post.')->group(function(){
-    Route::get('/create', function(){
-        return view('post.create');
-    })->name('create');
+    Route::view('/create', 'post.create')->name('create');
 
     Route::post('/upload', [App\Http\Controllers\PostController::class, 'create'])->name('upload');
 
+    Route::get('/view/{id}', function($id){
+        $post = Post::findOrFail($id);
+
+        return view('post.view', ['post' => $post]);
+        
+    })->name('view');
 });
 
 Route::prefix('/image')->name('image.')->group(function(){

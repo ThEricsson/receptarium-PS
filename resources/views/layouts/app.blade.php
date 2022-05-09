@@ -62,7 +62,7 @@
                         
                         <div class="row">
                             <div class="col-4 m-0 p-0 align-middle d-flex align-items-center justify-content-center ">
-                                <a href="{{ route( 'post.create') }}">
+                                <a class="d-flex align-items-center justify-content-center" href="{{ route( 'post.create') }}">
                                     <span style="color: black;" class="material-icons">&#xe145;</span>
                                 </a>
                             </div>
@@ -110,7 +110,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-11">
                         <div class="card">
-                            <div class="card-header headercustom">@yield('title')</div>
+                            <div class="card-header headercustom custom-title"><h3 class="m-0">@yield('title')</h3></div>
                             @yield('content')
                         </div>
                     </div>

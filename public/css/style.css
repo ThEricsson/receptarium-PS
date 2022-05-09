@@ -8,9 +8,23 @@
     width: 2.5em;
     height: 2.5em;
     border-radius: 50%;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .headercustom {
     background-color: #99b396;
+}
+
+.btn-custom {
+    background-color: #4b6948;
+    border: 1px solid #3f583d;
+}
+
+.btn-custom:hover {
+    background-color: #3f5a3c;
+    border: 1px solid #3f583d;
+}
+
+.custom-title {
+    text-align: center;
 }
