@@ -10,7 +10,9 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/vue@next"></script>
-    <script type="module" src="{{ asset('js/sripts.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="{{ asset('js/vue.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/script.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->

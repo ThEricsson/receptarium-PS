@@ -10,20 +10,31 @@
             </div>
         @endif
         <div class="d-flex flex-wrap justify-content-around">
-            @foreach ($posts as $post)
-                <div class="card m-1" style="width: 30rem;">
-                    <div class="card-header">
-                        <img src="{{ route('image.getavatar', ['filename'=>$post->user->image]) }}" class="avatar">
-                        <span class="inline-block">{{$post->user->name}} {{$post->user->surname}} </span><span style="color: grey; fonts-size: 5px;">|   {{ '@'.$post->user->nick }}</span>
+            @if($posts->isNotEmpty())
+                @foreach ($posts as $post)
+                    <div class="card m-1" style="width: 30rem;">
+                        <div class="card-header">
+                            <img src="{{ route('image.getavatar', ['filename'=>$post->user->image]) }}" class="avatar">
+                            <span class="inline-block">{{$post->user->name}} {{$post->user->surname}} </span><span style="color: grey; fonts-size: 5px;">|   {{ '@'.$post->user->nick }}</span>
+                        </div>
+                            <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
+                            <div class="card-body">
+                            @auth
+                                <img class="m-2 btn-like" style="width: 1.5em" src="{{ asset('/images/heart/heart-v.png') }}" data-id="{{$post->id}}">
+                                <img class="m-2 btn-favorite" style="width: 1.8em" src="{{ asset('/images/favorite/favorite-v.png') }}" data-id="{{$post->id}}">
+                            @endauth
+                            <h5 class="card-title">{{$post->titol}}</h5>
+                            <!--<p class="card-text">{{$post->description}}</p>-->
+                            <a href="{{ route('post.view', ['id'=>$post->id]) }}" class="btn btn-primary btn-custom">Veure recepta</a>
+                        </div>
                     </div>
-                    <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
-                    <div class="card-body">
-                    <h5 class="card-title">{{$post->titol}}</h5>
-                    <p class="card-text">{{$post->description}}</p>
-                    <a href="{{ route('post.view', ['id'=>$post->id]) }}" class="btn btn-primary btn-custom">Veure recepta</a>
-                    </div>
+                @endforeach
+            @else 
+                <div>
+                    <h2>No s'han trobat recepta</h2>
                 </div>
-            @endforeach
+            @endif
+            
         </div>
         {{$posts->links()}}
     </div>

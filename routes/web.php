@@ -23,6 +23,8 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 Route::prefix('/user')->name('user.')->group(function(){
     Route::view('/edit', 'user.edit')->name('edit');
 
@@ -44,6 +46,10 @@ Route::prefix('/post')->name('post.')->group(function(){
         return view('post.view', ['post' => $post]);
         
     })->name('view');
+
+    Route::get('/like/{post_id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like');
+
+    Route::get('/dislike/{post_id}', [App\Http\Controllers\LikeController::class, 'dislike'])->name('dislike');
 });
 
 Route::prefix('/image')->name('image.')->group(function(){
@@ -53,3 +59,4 @@ Route::prefix('/image')->name('image.')->group(function(){
     Route::get('/getpostimg/{filename}', [App\Http\Controllers\ImageController::class, 'getPostImg'])->name('getpostimg');
 
 });
+
