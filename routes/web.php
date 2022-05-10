@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +34,12 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::view('/editpass', 'user.editpass')->name('editpass');
 
     Route::post('/updatepass', [App\Http\Controllers\UserController::class, 'updatepass'])->name('updatepass');
+
+    Route::get('/profile/{id}', function($id){
+        $user = User::findOrFail($id);
+
+        return view('user.profile', ['user' => $user]);
+    });
 });
 
 Route::prefix('/post')->name('post.')->group(function(){
@@ -50,6 +57,8 @@ Route::prefix('/post')->name('post.')->group(function(){
     Route::get('/like/{post_id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like');
 
     Route::get('/dislike/{post_id}', [App\Http\Controllers\LikeController::class, 'dislike'])->name('dislike');
+
+    Route::get('/favorite/{post_id}', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
 });
 
 Route::prefix('/image')->name('image.')->group(function(){

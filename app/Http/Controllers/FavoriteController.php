@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
-use App\Models\Like;
+use App\Models\Post;
+use App\Models\Favorite;
 
-class LikeController extends Controller{
+class FavoriteController extends Controller{
 
     /*
     |--------------------------------------------------------------------------
-    | Like Controller
+    | Favorite Controller
     |--------------------------------------------------------------------------
     |
-    | Aquest controlador s'encarrega de la gestió dels likes.
+    | Aquest controlador s'encarrega de la gestió dels favorits.
     | 
     |
     */
@@ -30,31 +31,30 @@ class LikeController extends Controller{
         $this->middleware('auth');
     }
 
-
     /**
-     * Crea el like
+     * Crea el favorite
      * 
      * @return void
      */
-    public function like($post_id){
+    public function favorite($post_id){
 
         $id= Auth::user()->id;
 
-        $user_like = Like::where('user_id', $id)
+        $user_favorite = Favorite::where('user_id', $id)
                             ->where('post_id', $post_id)
                             ->count();
 
-        if($user_like == 0){
-            $like = Like::create();
+        if($user_favorite == 0){
+            $favorite = Favorite::create();
 
-            $like->user_id=$id;
-            $like->post_id=$post_id;
-
-            $like->save();
+            $favorite->user_id=$id;
+            $favorite->post_id=$post_id;
+            
+            $favorite->save();
 
             return response(200);
         } else {
-            return response()->json(['El like ja existeix']);
+            return response(409);
         }
         
 
@@ -63,16 +63,16 @@ class LikeController extends Controller{
 
 
     /**
-     * Eliminar like
+     * Eliminar favorite
      * 
      * @return void
      */
-    public function dislike($post_id){
+    public function unfavorite($post_id){
 
         $user = Auth::user();
-        $like = $user->likes->where('post_id', $post_id)->firstOrFail();
+        $favorite = $user->favorites->where('post_id', $post_id)->firstOrFail();
 
-        $like->delete();
+        $favorite->delete();
 
         return response(200);
         

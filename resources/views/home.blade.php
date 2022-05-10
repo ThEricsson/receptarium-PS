@@ -20,7 +20,20 @@
                             <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                             <div class="card-body">
                             @auth
-                                <img class="m-2 btn-like" style="width: 1.5em" src="{{ asset('/images/heart/heart-v.png') }}" data-id="{{$post->id}}">
+                                <?php $user_like = False; ?>
+
+                                @foreach ($post->likes as $like)
+                                    @if ($like->post_id == $post->id and $like->user_id == Auth::user()->id)
+                                        <?php $user_like = True; ?>  
+                                    @endif
+                                @endforeach
+
+                                @if($user_like)
+                                    <img class="m-2 btn-dislike" style="width: 1.5em" src="{{ asset('/images/heart/heart.png') }}" data-id="{{$post->id}}">
+                                @else
+                                    <img class="m-2 btn-like" style="width: 1.5em" src="{{ asset('/images/heart/heart-v.png') }}" data-id="{{$post->id}}">
+                                @endif
+                                
                                 <img class="m-2 btn-favorite" style="width: 1.8em" src="{{ asset('/images/favorite/favorite-v.png') }}" data-id="{{$post->id}}">
                             @endauth
                             <h5 class="card-title">{{$post->titol}}</h5>
@@ -31,7 +44,7 @@
                 @endforeach
             @else 
                 <div>
-                    <h2>No s'han trobat recepta</h2>
+                    <h2>No s'han trobat receptes</h2>
                 </div>
             @endif
             

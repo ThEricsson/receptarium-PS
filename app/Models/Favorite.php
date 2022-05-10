@@ -9,7 +9,7 @@ class Favorite extends Model{
     
     use HasFactory;
 
-    protected $table='favourites';
+    protected $table='favorites';
 
     public function user(){
         return $this->belongsTo('\App\Models\User', 'user_id');
