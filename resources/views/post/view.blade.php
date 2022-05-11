@@ -12,7 +12,7 @@
         <div class="justify-content-around">
             <div style="width: auto" class="row">
                 <div class="col-md-6 d-flex justify-content-center">
-                    <p>
+                    <p class="fs-4">
                         {{$post->description}}
                     </p>
                 </div>

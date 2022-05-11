@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Like;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,12 +20,16 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect()->route('home.main');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('/home')->name('home.')->group(function(){
 
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('main');
 
+    Route::get('/search/{cerca}', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+
+});
 
 Route::prefix('/user')->name('user.')->group(function(){
     Route::view('/edit', 'user.edit')->name('edit');
@@ -37,8 +42,15 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::get('/profile/{id}', function($id){
         $user = User::findOrFail($id);
+        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->paginate(5);
+        $totalLikes = Post::with('likes')->whereUserId($id)->get()->sum(function($post) {
+            return $post->likes->count();
+        });
+        $totalFavs = Post::with('favorites')->whereUserId($id)->get()->sum(function($post) {
+            return $post->favorites->count();
+        });
 
-        return view('user.profile', ['user' => $user]);
+        return view('user.profile', ['user' => $user, 'posts' => $posts, 'totalLikes' => $totalLikes, 'totalFavs' => $totalFavs]);
     })->name('profile');
 });
 

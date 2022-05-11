@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\Like');
     }
 
+    public function favorites(){
+        return $this->hasMany('\App\Models\Favorite');
+    }
+
     public function posts(){
         return $this->hasMany('\App\Models\Post');
     }

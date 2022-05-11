@@ -11,8 +11,8 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+    <script type="module" src="{{ asset('js/masonry.pkgd.min.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/imagesloaded.pkgd.min.js') }}" defer></script>
     <script type="module" src="{{ asset('js/vue.js') }}" defer></script>
     <script type="module" src="{{ asset('js/script.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -40,7 +40,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
+                <form class="d-flex" method="GET" action="{{ route('home.search', []) }}">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Cerca una recepta!">
+                        <button class="btn btn-success material-icons" type="submit">&#xe8b6;</button>
+                    </div>
+                </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -116,7 +122,7 @@
         <main style="background-color: #e8e8e8; min-height: 41.5em;" class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-12">
+                    <div class="col-md-11">
                         <div class="card">
                             <div class="card-header headercustom custom-title"><h3 class="m-0">@yield('title')</h3></div>
                             @yield('content')
@@ -128,7 +134,7 @@
     </div>
     <footer class="text-center text-lg-start" style="background-color: #688f64">
         <div class="text-center p-3">
-            Copyright © 2022 "<a class="text-dark" href="{{route('home')}}">Receptarium</a>" una empresa de Eric Roca Inc. Tots els drets reservats.
+            Copyright © 2022 "<a class="text-dark" href="{{route('home.main')}}">Receptarium</a>" una empresa de Eric Roca Inc. Tots els drets reservats.
 
         </div>
       </footer>
