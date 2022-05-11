@@ -1,4 +1,4 @@
-/* Self css */
+/* Main self css */
 
 a {
     text-decoration: none;
@@ -33,6 +33,38 @@ a {
     text-align: center;
 }
 
-.imatge {
-    image-rendering: auto;
+.grid {
+    margin: 0 auto;
+}
+
+.post {
+    width: 35rem;
+}
+
+/* Bootstrap custom */
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #688f64;
+    border-color: #435e41;
+}
+
+.page-link {
+    z-index: 2;
+    color: #435e41;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #435e41;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Telefon */
+
+@media (max-width: 950px) {
+    .post {
+        width: 33em;
+    }
 }

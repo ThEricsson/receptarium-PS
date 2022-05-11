@@ -39,7 +39,7 @@ Route::prefix('/user')->name('user.')->group(function(){
         $user = User::findOrFail($id);
 
         return view('user.profile', ['user' => $user]);
-    });
+    })->name('profile');
 });
 
 Route::prefix('/post')->name('post.')->group(function(){

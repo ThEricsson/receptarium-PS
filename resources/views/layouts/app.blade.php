@@ -11,6 +11,8 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
     <script type="module" src="{{ asset('js/vue.js') }}" defer></script>
     <script type="module" src="{{ asset('js/script.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -63,7 +65,7 @@
                         @else
                         
                         <div class="row">
-                            <div class="col-4 m-0 p-0 align-middle d-flex align-items-center justify-content-center ">
+                            <div class="col-4 m-0 p-0 align-middle d-flex align-items-center justify-content-center " style="width: 2em;">
                                 <a class="d-flex align-items-center justify-content-center" href="{{ route( 'post.create') }}">
                                     <span style="color: black;" class="material-icons">&#xe145;</span>
                                 </a>
@@ -74,11 +76,15 @@
                             <div class="col-4 m-0 p-0">
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->nick }}
+                                        <span class="fw-bold">{{ Auth::user()->nick }}</span>
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         
+                                        <a class="dropdown-item" href="{{route('user.profile', ['id' => Auth::user()->id])}}">
+                                            {{_('Veure perfil')}}
+                                        </a>
+
                                         <a class="dropdown-item" href="{{route('user.edit')}}">
                                             {{_('Editar usuari')}}
                                         </a>
@@ -107,10 +113,10 @@
             </div>
         </nav>
 
-        <main style="background-color: #e8e8e8;" class="py-4">
+        <main style="background-color: #e8e8e8; min-height: 41.5em;" class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header headercustom custom-title"><h3 class="m-0">@yield('title')</h3></div>
                             @yield('content')
@@ -120,5 +126,11 @@
             </div>
         </main>
     </div>
+    <footer class="text-center text-lg-start" style="background-color: #688f64">
+        <div class="text-center p-3">
+            Copyright © 2022 "<a class="text-dark" href="{{route('home')}}">Receptarium</a>" una empresa de Eric Roca Inc. Tots els drets reservats.
+
+        </div>
+      </footer>
 </body>
 </html>

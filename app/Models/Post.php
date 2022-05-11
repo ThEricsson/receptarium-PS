@@ -26,5 +26,9 @@ class Post extends Model{
     public function passos(){
         return $this->hasMany('\App\Models\Pas');
     }
+
+    public function favorites(){
+        return $this->hasMany('\App\Models\Favorite');
+    }
     
 }

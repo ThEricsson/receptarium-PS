@@ -105,4 +105,16 @@ $(document).ready(function () {
         });
     }
     favorite();
+
+
+
+
+    var $grid = $('.grid').imagesLoaded(function () {
+        $grid.masonry({
+            itemSelector: '.grid-item',
+            fitWidth: true
+        });
+    });
+
+
 })
