@@ -30,5 +30,9 @@ class Post extends Model{
     public function favorites(){
         return $this->hasMany('\App\Models\Favorite');
     }
+
+    public function ingredients(){
+        return $this->hasMany('\App\Models\Ingredient');
+    }
     
 }

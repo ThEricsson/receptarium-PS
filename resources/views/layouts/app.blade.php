@@ -40,10 +40,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <form class="d-flex" method="GET" action="{{ route('home.search') }}">
                     <div class="input-group">
-                        <input class="form-control" value="{{$cerca}}" type="search" name="cerca" placeholder="Cerca una recepta!">
+                        <input class="form-control" value="{{$cerca ?? ''}}" type="search" name="cerca" placeholder="Cerca una recepta!">
                         <button class="btn btn-success material-icons" type="submit">&#xe8b6;</button>
                     </div>
                 </form>

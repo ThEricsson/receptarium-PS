@@ -15,8 +15,30 @@
                     <div class="grid-item m-3">
                         <div class="card custom-card post">
                             <div class="card-header">
-                                <img src="{{ route('image.getavatar', ['filename'=>$post->user->image]) }}" class="avatar">
-                                <a href="{{route('user.profile', ['id'=>$post->user->id])}}"><span class="inline-block">{{$post->user->name}} {{$post->user->surname}} </span></a><span style="color: grey; fonts-size: 5px;">|   {{ '@'.$post->user->nick }}</span>
+                                <div class="row">
+                                    <div class="col-11">
+                                        <img src="{{ route('image.getavatar', ['filename'=>$post->user->image]) }}" class="avatar">
+                                        <a style="color: black;" href="{{route('user.profile', ['id'=>$post->user->id])}}"><span class="inline-block">{{$post->user->name}} {{$post->user->surname}} </span></a><span style="color: grey; fonts-size: 5px;">|   <a style="color: grey; fonts-size: 5px;" href="{{route('user.profile', ['id'=>$post->user->id])}}">{{ '@'.$post->user->nick }}</a></span>    
+                                    </div>
+                                    <div class="col-1">
+                                        @auth
+                                            @if ($post->user_id == Auth::user()->id)
+                                                <a style="color: black;" class="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                    <span class="material-icons">&#xe5d4;</span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                    <form method="POST" action="{{route('post.delete')}}">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $post->id }}" name="post_id">
+                                                        <button style="color: red;" class="dropdown-item" type="submit">
+                                                            {{_('Eliminar post')}}
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endif
+                                        @endauth
+                                    </div>
+                                </div>
                             </div>
                                 <a href="{{ route('post.view', ['id'=>$post->id]) }}">
                                     <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
@@ -58,8 +80,14 @@
 
                                         <span>{{$post->favorites->count()}}</span>
                                     </div>
+                                @else
+                                    <div>
+                                        <img class="my-2 ms-2" style="width: 1.5em;" src="{{ asset('/images/heart/heart.png') }}">
+                                        <span>{{$post->likes->count()}}</span>
+                                        <img class="my-2 ms-2 me-0" style="width: 1.4em" src="{{ asset('/images/favorite/favorite.png') }}">
+                                        <span>{{$post->favorites->count()}}</span>
+                                    </div>
                                 @endauth
-                                <!--<p class="card-text">{{$post->description}}</p>-->
                             </div>
                         </div>
                     </div>

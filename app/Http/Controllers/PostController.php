@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use App\Models\Post;
 use App\Models\Pas;
+use App\Models\Ingredient;
+use App\Models\Like;
+use App\Models\Favorite;
 
 class PostController extends Controller{
 
@@ -47,6 +50,7 @@ class PostController extends Controller{
             'titol' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:1000'],
             'passos.*' => ['required', 'string', 'max:1000'],
+            'ingredients.*' => ['required', 'string', 'max:1000'],
             'fotos' =>['required', 'image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000']
         ]);
         
@@ -76,8 +80,48 @@ class PostController extends Controller{
             $pasdb->save();
         }
 
+        /* Creació dels ingredients */
+
+        $ingredients = $request->input('ingredients');
+
+        foreach ($ingredients as $ingredient) {
+            $ingredientdb = new Ingredient;
+            $ingredientdb->post_id = $post->id;
+            $ingredientdb->content = $ingredient;
+            $ingredientdb->save();
+        }
+
         return redirect()->route('post.create')
                          ->with(['message'=>'Recepta publicada correctament!']);
+    }
+
+    /**
+     * Elimina el post enviat com paràmetre.
+     * 
+     * @return void
+     */
+    public function delete(Request $request)
+    {
+        $post = Post::findOrFail($request->post_id);
+
+        if ($post->user_id == Auth::user()->id){
+
+            Like::where('post_id', $post->id)->delete();
+
+            Favorite::where('post_id', $post->id)->delete();
+
+            Pas::where('post_id', $post->id)->delete();
+
+            Ingredient::where('post_id', $post->id)->delete();
+
+            $post->delete();
+
+            return redirect()->back();
+            
+        } else {
+            return abort(403);
+        }
+
     }
 
     

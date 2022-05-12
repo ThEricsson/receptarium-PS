@@ -71,6 +71,8 @@ Route::prefix('/post')->name('post.')->group(function(){
     Route::get('/dislike/{post_id}', [App\Http\Controllers\LikeController::class, 'dislike'])->name('dislike');
 
     Route::get('/favorite/{post_id}', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
+
+    Route::post('/delete', [App\Http\Controllers\PostController::class, 'delete'])->name('delete');
 });
 
 Route::prefix('/image')->name('image.')->group(function(){
