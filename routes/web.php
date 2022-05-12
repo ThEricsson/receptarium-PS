@@ -27,7 +27,7 @@ Route::prefix('/home')->name('home.')->group(function(){
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('main');
 
-    Route::get('/search/{cerca}', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+    Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
 });
 

@@ -41,9 +41,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
-                <form class="d-flex" method="GET" action="{{ route('home.search', []) }}">
+                <form class="d-flex" method="GET" action="{{ route('home.search') }}">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Cerca una recepta!">
+                        <input class="form-control" value="{{$cerca}}" type="search" name="cerca" placeholder="Cerca una recepta!">
                         <button class="btn btn-success material-icons" type="submit">&#xe8b6;</button>
                     </div>
                 </form>
