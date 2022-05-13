@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Inici')
+@section('title', 'Receptes')
 
 @section('content')
     <div class="card-body">
@@ -10,6 +10,31 @@
             </div>
         @endif
         @if($posts->isNotEmpty())
+            <div class="mb-3 col-md-12 rounded border cercador-custom">
+                <div class="p-3 rounded">
+                    <div class="row">
+                        <form class="d-flex" method="GET" action="{{ route('home.search') }}">
+                        <div class="col-md-6 me-2">
+                            <input class="form-control" value="{{$cerca ?? ''}}" type="search" name="cerca" placeholder="Cerca una recepta!">
+                        </div>
+                        <div class="col-md-6 d-flex @auth justify-content-between @else justify-content-center @endauth">
+                            <button type="submit" name="action" value="last" class="btn btn-success">Últimes publicacions <span class="material-icons align-middle ms-1">&#xe8b5;</span></button>
+                            <button type="submit" name="action" value="better" class="btn btn-success mx-2">Millor valorades <span class="material-icons align-middle ms-1">&#xe87d;</span></button>
+                            @auth
+                                <button type="submit" name="action" value="favs" class="btn btn-success">Favorits <span class="material-icons align-middle ms-1">&#xe743;</span></button>   
+                            @endauth
+                            {{--
+                            <select class="form-select" aria-label="Default select example">
+                                <option value="1">Més recent</option>
+                                <option value="2">Més agradat</option>
+                                <option value="3">Els meus fav</option>
+                            </select>
+                            --}}
+                        </div>
+                    </form>
+                    </div>                    
+                </div>
+            </div>
             <div id="masonry" class="grid">
                 @foreach ($posts as $post)
                     <div class="grid-item m-3">

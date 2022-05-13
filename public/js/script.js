@@ -102,9 +102,38 @@ $(document).ready(function () {
                 }
 
             })
+            unfavorite();
         });
     }
     favorite();
+
+    function unfavorite() {
+        $('.btn-unfavorite').unbind('click').click(function () {
+            console.log('dislike')
+
+            $(this).addClass('btn-favorite').removeClass('btn-unfavorite');
+
+            $(this).attr('src', "/images/favorite/favorite-v.png");
+
+            $.ajax({
+                url: url + '/post/unfavorite/' + $(this).data('id'),
+
+                type: 'GET',
+
+                succes: function (response) {
+                    if (response.like) {
+                        console.log('Has fet dislike')
+                    } else {
+                        console.log("Error en la petició ajax")
+                    }
+                }
+
+            })
+            like();
+            unfavorite();
+        });
+    }
+    unfavorite();
 
 
 

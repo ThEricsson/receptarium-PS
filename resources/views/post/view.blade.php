@@ -10,14 +10,14 @@
             </div>
         @endif
         <div class="justify-content-around">
-            <div style="width: auto" class="row">
-                <div class="col-md-6 d-flex justify-content-center">
+            <div class="row">
+                <div class="col-md-4 d-flex justify-content-center">
                     <p class="fs-5">
                         {{$post->description}}
                     </p>
                 </div>
-                <div class="col-md-6 d-flex justify-content-center" style="">
-                    <img class="border border-dark rounded" style="width: 70%;" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
+                <div class="col-md-8 d-flex justify-content-center" style="">
+                    <img style="box-shadow: 0 6px 9px 0 rgba(30, 30, 26, 0.38);" class="rounded post-img" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                 </div>
             </div>
             <hr>

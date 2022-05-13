@@ -52,6 +52,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 
         return view('user.profile', ['user' => $user, 'posts' => $posts, 'totalLikes' => $totalLikes, 'totalFavs' => $totalFavs]);
     })->name('profile');
+
 });
 
 Route::prefix('/post')->name('post.')->group(function(){
@@ -71,6 +72,8 @@ Route::prefix('/post')->name('post.')->group(function(){
     Route::get('/dislike/{post_id}', [App\Http\Controllers\LikeController::class, 'dislike'])->name('dislike');
 
     Route::get('/favorite/{post_id}', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
+
+    Route::get('/unfavorite/{post_id}', [App\Http\Controllers\FavoriteController::class, 'unfavorite'])->name('unfavorite');
 
     Route::post('/delete', [App\Http\Controllers\PostController::class, 'delete'])->name('delete');
 });
