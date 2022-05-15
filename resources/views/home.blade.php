@@ -9,32 +9,61 @@
                 {{ session('status') }}
             </div>
         @endif
-        @if($posts->isNotEmpty())
             <div class="mb-3 col-md-12 rounded border cercador-custom">
-                <div class="p-3 rounded">
-                    <div class="row">
-                        <form class="d-flex" method="GET" action="{{ route('home.search') }}">
-                        <div class="col-md-6 me-2">
-                            <input class="form-control" value="{{$cerca ?? ''}}" type="search" name="cerca" placeholder="Cerca una recepta!">
+                <div class="container p-3 rounded">
+                    <form method="GET" action="{{ route('home.search') }}">
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <input class="form-control" value="{{$cerca ?? ''}}" type="search" name="cerca" placeholder="Cerca una recepta!">
+                            </div>
+                            <div class="col-md-6 d-flex @auth justify-content-between @else justify-content-center @endauth">
+                                <button type="submit" name="action" value="last" class="btn btn-success">Últimes publicacions <span class="material-icons align-middle ms-1">&#xe8b5;</span></button>
+                                <button type="submit" name="action" value="better" class="btn btn-success mx-2">Millor valorades <span class="material-icons align-middle ms-1">&#xe87d;</span></button>
+                                @auth
+                                    <button type="submit" name="action" value="favs" class="btn btn-success">Favorits <span class="material-icons align-middle ms-1">&#xe743;</span></button>   
+                                @endauth
+                                {{--
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="1">Més recent</option>
+                                    <option value="2">Més agradat</option>
+                                    <option value="3">Els meus fav</option>
+                                </select>
+                                --}}
+                            </div>
                         </div>
-                        <div class="col-md-6 d-flex @auth justify-content-between @else justify-content-center @endauth">
-                            <button type="submit" name="action" value="last" class="btn btn-success">Últimes publicacions <span class="material-icons align-middle ms-1">&#xe8b5;</span></button>
-                            <button type="submit" name="action" value="better" class="btn btn-success mx-2">Millor valorades <span class="material-icons align-middle ms-1">&#xe87d;</span></button>
-                            @auth
-                                <button type="submit" name="action" value="favs" class="btn btn-success">Favorits <span class="material-icons align-middle ms-1">&#xe743;</span></button>   
-                            @endauth
-                            {{--
-                            <select class="form-select" aria-label="Default select example">
-                                <option value="1">Més recent</option>
-                                <option value="2">Més agradat</option>
-                                <option value="3">Els meus fav</option>
-                            </select>
-                            --}}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="row">
+                                <label class="col-md-3 col-form-label text-md-start" for="dificultat">{{ __('Dificultat recepta') }}</label>
+                                    <div class="col-md-8">
+                                        <select class="form-select" name="dificultat">
+                                            <option selected value="all">Totes</option>
+                                            <option value="facil">Fàcil</option>
+                                            <option value="normal">Normal</option>
+                                            <option value="dificil">Difícil</option>
+                                        </select>
+                                    </div>
+                                </div>        
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label text-md-start" for="tipus">{{ __('Plat') }}</label>
+                                    <div class="col-md-8">
+                                        <select class="form-select" name="tipus">
+                                            <option selected value="all">Tots</option>
+                                            <option value="entrant">Entrant</option>
+                                            <option value="principal">Plat principal</option>
+                                            <option value="postre">Postre</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                    </div>                    
+                    </form>              
                 </div>
             </div>
+            @if($posts->isNotEmpty())
             <div id="masonry" class="grid">
                 @foreach ($posts as $post)
                     <div class="grid-item m-3">
@@ -69,7 +98,7 @@
                                     <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                                 </a>
                             <div class="card-body d-flex justify-content-between">
-                                <div class="d-flex align-items-center justify-content-center">
+                                <div style="width: 75%;" class="d-flex align-items-center justify-content-center">
                                     <h5 class="card-title mt-1">{{$post->titol}}</h5>
                                 </div>
                                 @auth
@@ -120,8 +149,8 @@
             </div>
             <div class="mt-3">{{$posts->links('pagination::bootstrap-5')}}</div>
         @else 
-            <div>
-                <h2>No s'han trobat receptes</h2>
+            <div class="text-center">
+                <h2>No s'han trobat receptes :(</h2>
             </div>
         @endif        
     </div>

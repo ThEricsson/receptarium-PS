@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 use App\Models\Post;
 use App\Models\Pas;
 use App\Models\Ingredient;
@@ -51,7 +52,9 @@ class PostController extends Controller{
             'description' => ['required', 'string', 'max:1000'],
             'passos.*' => ['required', 'string', 'max:1000'],
             'ingredients.*' => ['required', 'string', 'max:1000'],
-            'fotos' =>['required', 'image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000']
+            'fotos' =>['required', 'image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000'],
+            'dificultat' => ['required', Rule::in(['facil', 'normal', 'dificil'])],
+            'tipus' => ['required', Rule::in(['entrant', 'principal', 'postre'])]
         ]);
         
         $image_path = $request->file('fotos');
@@ -67,6 +70,8 @@ class PostController extends Controller{
         $post->titol = $request->input('titol');
         $post->description = $request->input('description');
         $post->image_path = $fotoname;
+        $post->dificultat = $request->input('dificultat');
+        $post->tipus = $request->input('tipus');
         $post->save();
 
         /* Creació dels passos */

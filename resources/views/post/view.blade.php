@@ -21,6 +21,22 @@
                 </div>
             </div>
             <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3><span class="material-icons">&#xe80e;</span> Dificultat:</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-capitalize">{{$post->dificultat}}</li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3><span class="material-icons">&#xea11;</span> Tipus:</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-capitalize">{{$post->tipus}}</li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+            </div>
             <div>
                 <h3><span class="material-icons mt-2">&#xf1ea;</span> Ingredients:</h3>
                 <ol class="list-group list-group-numbered">

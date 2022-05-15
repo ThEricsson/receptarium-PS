@@ -17,10 +17,12 @@
                 <hr>
                 <img class="my-2 ms-2 me-0 " style="width: 1.8em" src="{{ asset('/images/heart/heart.png') }}"> <span>{{$totalLikes}}</span>
                 <img class="my-2 ms-2 me-0 " style="width: 1.7em" src="{{ asset('/images/favorite/favorite.png') }}"> <span>{{$totalFavs}}</span>
-                @if ($user->id == Auth::user()->id)
-                    <br>
-                    <a class="btn btn-success" href="{{route('user.edit')}}">Editar perfil</a>
-                @endif
+                @auth
+                    @if ($user->id == Auth::user()->id)
+                        <br>
+                        <a class="btn btn-success" href="{{route('user.edit')}}">Editar perfil</a>
+                    @endif
+                @endauth
             </div>
             <div class="col-md-9 border-start">
                 @if($posts->isNotEmpty())
@@ -58,7 +60,7 @@
                                         <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                                     </a>
                                 <div class="card-body d-flex justify-content-between">
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div style="width: 75%;" class="d-flex align-items-center justify-content-center">
                                         <h5 class="card-title mt-1">{{$post->titol}}</h5>
                                     </div>
                                     @auth

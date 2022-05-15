@@ -25,7 +25,7 @@ class HomeController extends Controller
     /**
      * Cerca la cerca de l'usuari a la base de dades, en cas que la cerca 
      * que faci l'usuari sigui nul·la, retornarà totes les receptes.
-     * 
+    * 
      * @return posts
      */
     public function search(Request $request){
@@ -36,20 +36,38 @@ class HomeController extends Controller
             $cerca = "";
         }
         
-        if($request->action == "better"){
-
-            $posts = Post::where('titol', 'like', '%'.$cerca.'%')->withCount('likes')->orderByDesc('likes_count')->paginate(5);
-
-        } else if($request->action == "favs" && Auth::check()){
+        if($request->action == "favs" && Auth::check()){
             
             $posts = Post::whereHas('favorites', function ($query) {
                 $query->where('user_id', Auth::id());
-            })->where('titol', 'like', '%'.$cerca.'%')->orderBy('id', 'desc')->paginate(5);
+            })->where('titol', 'like', '%'.$cerca.'%');
             
         } else {
-            $posts = Post::where('titol', 'like', '%'.$cerca.'%')->orderBy('id', 'desc')->paginate(5);
+            $posts = Post::where('titol', 'like', '%'.$cerca.'%');
         }
-            
+        
+        if($request->dificultat != "all"){
+            $dificultat = $request->dificultat;
+
+            $posts = $posts->where('dificultat', $dificultat);
+
+        }
+
+        if($request->tipus != "all"){
+            $tipus = $request->tipus;
+
+            $posts = $posts->where('tipus', $tipus);
+
+        }
+
+        if($request->action == "better"){
+
+            $posts = $posts->where('titol', 'like', '%'.$cerca.'%')->withCount('likes')->orderByDesc('likes_count')->paginate(5);
+
+        } else{
+            $posts = $posts->orderBy('id', 'desc')->paginate(5);
+        }
+
         return view('home',compact('posts', 'cerca'));
 
     }
