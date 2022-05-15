@@ -34,7 +34,7 @@
     <div id="app">
         <nav style="background-color: #688f64;" class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('home.main') }}">
                     <img style="width: 6em" src="{{ asset('/images/logoletters.png') }}" alt="">
                 </a>
                 

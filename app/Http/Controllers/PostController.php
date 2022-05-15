@@ -101,6 +101,86 @@ class PostController extends Controller{
     }
 
     /**
+     * Crea i valida tant el post, com els passos
+     * que el componen.
+     * 
+     * @return void
+     */
+    public function update(Request $request){
+
+        $post = Post::findOrFail($request->post_id);
+        $user_id = Auth::user()->id;
+
+        if($post->user_id == $user_id){
+            $this->validate($request, [
+                'titol' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string', 'max:1000'],
+                'passos.*' => ['required', 'string', 'max:1000'],
+                'ingredients.*' => ['required', 'string', 'max:1000'],
+                'fotos' =>['required', 'image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000'],
+                'dificultat' => ['required', Rule::in(['facil', 'normal', 'dificil'])],
+                'tipus' => ['required', Rule::in(['entrant', 'principal', 'postre'])]
+            ]);
+            
+            /* Creació dels passos */
+    
+            $passos = $request->input('passos');
+            $passos_ids = json_decode($request->passos_ids);
+            $index = 0;
+            
+            foreach ($passos as $pas) {
+                $pasdb = Pas::findOrFail($passos_ids[$index]);
+
+                if($pasdb->post->user->id == $user_id){
+                    $pasdb->content = $pas;
+                    $pasdb->update();
+                    $index += 1;
+                } else {
+                    return abort(405);
+                }
+            }
+
+            /* Creació dels ingredients */
+    
+            $ingredients = $request->input('ingredients');
+            $ingredients_ids = json_decode($request->ingredients_ids);
+            $index = 0;
+            
+            foreach ($ingredients as $ingredient) {
+                $ingredientdb = Ingredient::findOrFail($ingredients_ids[$index]);
+
+                if($ingredientdb->post->user->id == $user_id){
+                    $ingredientdb->content = $ingredient;
+                    $ingredientdb->update();
+                    $index += 1;
+                } else {
+                    return abort(405);
+                }
+            }
+            
+            $image_path = $request->file('fotos');
+    
+            $path = $image_path->store('posts');
+    
+            $fotoname = preg_replace('/^.+[\\\\\\/]/', '', $path);
+    
+            /* Creació del post */
+            $post->titol = $request->input('titol');
+            $post->description = $request->input('description');
+            $post->image_path = $fotoname;
+            $post->dificultat = $request->input('dificultat');
+            $post->tipus = $request->input('tipus');
+            $post->update();
+    
+            return redirect()->back()
+                             ->with(['message'=>'Recepta publicada correctament!']);
+        } else {
+            abort(405);
+        }
+        
+    }
+
+    /**
      * Elimina el post enviat com paràmetre.
      * 
      * @return void

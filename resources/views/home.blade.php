@@ -81,6 +81,11 @@
                                                     <span class="material-icons">&#xe5d4;</span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                    <a href="{{ route('post.edit', ['post_id'=>$post->id])}}">
+                                                        <div style="color: #3d8bfd;" class="dropdown-item m-0">
+                                                            Editar post
+                                                        </div>
+                                                    </a>
                                                     <form method="POST" action="{{route('post.delete')}}">
                                                         @csrf
                                                         <input type="hidden" value="{{ $post->id }}" name="post_id">

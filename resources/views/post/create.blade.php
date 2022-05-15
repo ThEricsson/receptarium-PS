@@ -86,7 +86,7 @@
                     <div class="p-1 input-group" v-for="(ingredient, index) in ingredients" :key='index'>
                         <div class="input-group-prepend">
                             <span class="input-group-text">@{{index + 1}}</span>
-                            </div>
+                        </div>
                         <input type="text" class="form-control @error('ingredients') is-invalid @enderror" name="ingredients[]"
                         v-model="ingredient.ingName"
                         required

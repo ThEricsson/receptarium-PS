@@ -19,8 +19,12 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return redirect()->route('home.main');
+Route::get('/', function(){
+    if(Auth::check()){
+        return redirect()->route('home.main');
+    }
+
+    return view('welcome');
 });
 
 Route::prefix('/home')->name('home.')->group(function(){
@@ -66,6 +70,19 @@ Route::prefix('/post')->name('post.')->group(function(){
         return view('post.view', ['post' => $post]);
         
     })->name('view');
+    
+    Route::get('/editar/{post_id}', function($post_id){
+        $post = Post::findOrFail($post_id);
+
+        if(Auth::check() && Auth::user()->id == $post->user_id){
+            return view('post.edit', ['post' => $post]);
+        } else {
+            return abort(405);
+        }
+        
+    })->name('edit');
+
+    Route::post('/update', [App\Http\Controllers\PostController::class, 'update'])->name('update');
 
     Route::get('/like/{post_id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like');
 

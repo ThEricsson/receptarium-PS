@@ -43,6 +43,11 @@
                                                         <span class="material-icons">&#xe5d4;</span>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                        <a href="{{ route('post.edit', ['post_id'=>$post->id])}}">
+                                                            <div style="color: #3d8bfd;" class="dropdown-item m-0">
+                                                                Editar post
+                                                            </div>
+                                                        </a>
                                                         <form method="POST" action="{{route('post.delete')}}">
                                                             @csrf
                                                             <input type="hidden" value="{{ $post->id }}" name="post_id">
@@ -60,7 +65,7 @@
                                         <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                                     </a>
                                 <div class="card-body d-flex justify-content-between">
-                                    <div style="width: 75%;" class="d-flex align-items-center justify-content-center">
+                                    <div style="width: 70%;" class="d-flex align-items-center justify-content-center">
                                         <h5 class="card-title mt-1">{{$post->titol}}</h5>
                                     </div>
                                     @auth
