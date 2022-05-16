@@ -103,7 +103,7 @@
                                     <img class="card-img-top" src="{{ route('image.getpostimg', ['filename'=>$post->image_path]) }}">
                                 </a>
                             <div class="card-body d-flex justify-content-between">
-                                <div style="width: 75%;" class="d-flex align-items-center justify-content-center">
+                                <div style="width: 65%;" class="d-flex align-items-start justify-content-start">
                                     <h5 class="card-title mt-1">{{$post->titol}}</h5>
                                 </div>
                                 @auth

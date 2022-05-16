@@ -45,17 +45,39 @@
         
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        <nav style="background-color: #688f64;" class="navbar navbar-expand-md navbar-light shadow-sm">
+            <div class="container">              
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+                    
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
                         @endif
-                </div>
-            @endif
+                    </div>
+                </ul>
+                
+            </div>
+        </nav>
 
+        <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="my-8 bg-white bg-gray-800 overflow-hidden shadow rounded-lg p-4">
                     <div class="flex justify-center pt-8">

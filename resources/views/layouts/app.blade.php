@@ -67,7 +67,7 @@
                     </div>
                         @else
                         
-                        <div class="row">
+                        <div class="row me-2">
                             <div class="col-4 m-0 p-0 align-middle d-flex align-items-center justify-content-center " style="width: 2em;">
                                 <a class="d-flex align-items-center justify-content-center" href="{{ route( 'post.create') }}">
                                     <span style="color: black;" class="material-icons">&#xe145;</span>
@@ -119,7 +119,7 @@
         <main style="background-color: #e8e8e8; min-height: 41.5em;" class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header headercustom custom-title"><h3 class="m-0">@yield('title')</h3></div>
                             @yield('content')

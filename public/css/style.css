@@ -98,6 +98,12 @@ a {
 
 @media (max-width: 950px) {
     .post {
-        width: 25em;
+        width: 20em;
+    }
+
+    .post-img {
+        width: 20em;
+        height: 22em;
+        object-fit: cover;
     }
 }
