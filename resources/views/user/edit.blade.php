@@ -43,6 +43,20 @@
             </div>
 
             <div class="row mb-3">
+                <label for="description" class="col-md-4 col-form-label text-md-end">{{ __("Descripció d'usuari") }}</label>
+
+                <div class="col-md-6">
+                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="5" autocomplete="description">{{ Auth::user()->description }}</textarea>
+
+                    @error('description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
                 <label for="nick" class="col-md-4 col-form-label text-md-end">{{ __('Nickname') }}</label>
 
                 <div class="col-md-6">

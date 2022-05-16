@@ -32,7 +32,7 @@
                 <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripció recepta') }}</label>
 
                 <div class="col-md-6">
-                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" rows="6" required autocomplete="description"></textarea>
+                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="6" required autocomplete="description">{{ old('description') }}</textarea>
 
                     @error('description')
                         <span class="invalid-feedback" role="alert">
@@ -157,7 +157,7 @@
                 <label for="fotos" class="col-md-4 col-form-label text-md-end">{{ __('Fotografies de la recepta') }}</label>
 
                 <div class="col-md-6">
-                    <input id="fotos" type="file" class="form-control @error('fotos') is-invalid @enderror" name="fotos" value="{{ old('fotos') }}" autocomplete="fotos">
+                    <input id="fotos" type="file" class="form-control @error('fotos') is-invalid @enderror" name="fotos" value="{{ old('fotos') }}" autocomplete="fotos" required>
 
                     @error('fotos')
                         <span class="invalid-feedback" role="alert">

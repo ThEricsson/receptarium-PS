@@ -49,6 +49,7 @@ class UserController extends Controller{
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
+            'description' => ['nullable','string', 'max:500'],
             'nick' => 'required|string|max:255|unique:users,nick,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'avatar' =>['image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000']
@@ -67,6 +68,7 @@ class UserController extends Controller{
 
         $user->name=$request->input('name');
         $user->surname=$request->input('surname');
+        $user->description=$request->input('description');
         $user->nick=$request->input('nick');
         $user->email=$request->input('email');
 

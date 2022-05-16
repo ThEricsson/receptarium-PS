@@ -124,6 +124,9 @@
                             <div class="card-header headercustom custom-title"><h3 class="m-0">@yield('title')</h3></div>
                             @yield('content')
                         </div>
+                        <div class="row justify-content-center">
+                            @yield('comments')
+                        </div>
                     </div>
                 </div>
             </div>

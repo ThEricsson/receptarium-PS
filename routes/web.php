@@ -93,6 +93,8 @@ Route::prefix('/post')->name('post.')->group(function(){
     Route::get('/unfavorite/{post_id}', [App\Http\Controllers\FavoriteController::class, 'unfavorite'])->name('unfavorite');
 
     Route::post('/delete', [App\Http\Controllers\PostController::class, 'delete'])->name('delete');
+    
+    Route::post('/comentar', [App\Http\Controllers\ComentController::class, 'create'])->name('comentar');
 });
 
 Route::prefix('/image')->name('image.')->group(function(){

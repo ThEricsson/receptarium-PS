@@ -8,6 +8,10 @@ a {
     width: 10em;
 }
 
+.post {
+    width: 30em;
+}
+
 .avatar {
     width: 2.5em;
     height: 2.5em;

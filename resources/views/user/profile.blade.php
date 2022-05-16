@@ -14,6 +14,10 @@
                 <img class="avatar-user-detail mb-2" src="{{ route('image.getavatar', ['filename'=>$user->image]) }}">
                 <h2>{{"@".$user->nick}}</h2>
                 <h4 class="text-muted">{{$user->name." ".$user->surname}}</h4>
+                @if($user->description)
+                <hr>
+                <p class="text-start">{{$user->description}}</p>
+                @endif
                 <hr>
                 <img class="my-2 ms-2 me-0 " style="width: 1.8em" src="{{ asset('/images/heart/heart.png') }}"> <span>{{$totalLikes}}</span>
                 <img class="my-2 ms-2 me-0 " style="width: 1.7em" src="{{ asset('/images/favorite/favorite.png') }}"> <span>{{$totalFavs}}</span>
