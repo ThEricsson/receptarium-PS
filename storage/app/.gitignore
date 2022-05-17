@@ -1,3 +1,6 @@
 *
 !.public
+!/users
+!/posts
+!/users/default.png
 !.gitignore

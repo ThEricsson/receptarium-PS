@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('.btn-favorite').css('cursor', 'pointer');
     $('.btn-unfavorite').css('cursor', 'pointer');
 
-    var url = "http://127.0.0.1:8000"
+    var url = "http://127.0.0.1"
 
     /**
      * Gestiona les classes del botó de like de cadascuna de les
