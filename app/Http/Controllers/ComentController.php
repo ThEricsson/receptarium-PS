@@ -30,6 +30,12 @@ class ComentController extends Controller{
         $this->middleware('auth');
     }
 
+    /**
+     * Valida que el post on vol publicar el comentari existeixi,
+     * i crea el nou comentari.
+     * 
+     * @return void
+     */
     public function create(Request $request){
         
         $id = Auth::user()->id;

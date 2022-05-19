@@ -61,7 +61,6 @@ class FavoriteController extends Controller{
         
     }
 
-
     /**
      * Eliminar favorite
      * 

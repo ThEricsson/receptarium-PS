@@ -77,7 +77,7 @@ Route::prefix('/post')->name('post.')->group(function(){
         if(Auth::check() && Auth::user()->id == $post->user_id){
             return view('post.edit', ['post' => $post]);
         } else {
-            return abort(405);
+            return abort(403);
         }
         
     })->name('edit');

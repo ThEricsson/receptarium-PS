@@ -77,7 +77,11 @@ $(document).ready(function () {
     dislike();
 
     /**
+     * Gestiona les classes del botó de favorit de cadascuna de les
+     * publicacions i fa una petició ajax al controlador de favorit
+     * per crear un nou favorit per l'usuari.
      * 
+     * @return void
      */
     function favorite() {
         $('.btn-favorite').unbind('click').click(function () {
@@ -107,6 +111,14 @@ $(document).ready(function () {
     }
     favorite();
 
+
+    /**
+     * Gestiona les classes del botó de favorit de cadascuna de les
+     * publicacions i fa una petició ajax al controlador de favorit
+     * per eliminar el favorit de l'usuari
+     * .
+     * @returns void
+     */
     function unfavorite() {
         $('.btn-unfavorite').unbind('click').click(function () {
             console.log('dislike')
@@ -137,7 +149,11 @@ $(document).ready(function () {
 
 
 
-
+    /**
+     * El plugin masonry permet posicionar els posts amb el grit dinàmic.
+     * 
+     * @return void 
+     */
     var $grid = $('.grid').imagesLoaded(function () {
         $grid.masonry({
             itemSelector: '.grid-item',

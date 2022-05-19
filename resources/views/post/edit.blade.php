@@ -41,20 +41,6 @@
                     @enderror
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <label for="titol" class="col-md-4 col-form-label text-md-end">{{ __('Títol de la recepta') }}</label>
-
-                <div class="col-md-6">
-                    <input id="titol" type="text" class="form-control @error('titol') is-invalid @enderror" name="titol" value="{{ $post->titol }}" required autocomplete="titol" autofocus>
-
-                    @error('titol')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
             
             <div class="row mb-3">
                 <label for="dificultat" class="col-md-4 col-form-label text-md-end">{{ __('Dificultat recepta') }}</label>

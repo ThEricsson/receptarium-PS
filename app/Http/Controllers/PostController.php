@@ -13,6 +13,7 @@ use App\Models\Pas;
 use App\Models\Ingredient;
 use App\Models\Like;
 use App\Models\Favorite;
+use App\Models\Comment;
 
 class PostController extends Controller{
 
@@ -101,8 +102,8 @@ class PostController extends Controller{
     }
 
     /**
-     * Crea i valida tant el post, com els passos
-     * que el componen.
+     * Actualitza i valida tant el post, comprovant que cada ingredient i pas 
+     * siguin d'aquesta recepta, validant que l'usuari que l'edita sigui el propietari.
      * 
      * @return void
      */
@@ -122,7 +123,7 @@ class PostController extends Controller{
                 'tipus' => ['required', Rule::in(['entrant', 'principal', 'postre'])]
             ]);
             
-            /* Creació dels passos */
+            /* Actualització dels passos */
     
             $passos = $request->input('passos');
             $passos_ids = json_decode($request->passos_ids);
@@ -140,7 +141,7 @@ class PostController extends Controller{
                 }
             }
 
-            /* Creació dels ingredients */
+            /* Actualització dels ingredients */
     
             $ingredients = $request->input('ingredients');
             $ingredients_ids = json_decode($request->ingredients_ids);
@@ -164,7 +165,7 @@ class PostController extends Controller{
     
             $fotoname = preg_replace('/^.+[\\\\\\/]/', '', $path);
     
-            /* Creació del post */
+            /* Actualització del post */
             $post->titol = $request->input('titol');
             $post->description = $request->input('description');
             $post->image_path = $fotoname;
@@ -198,6 +199,8 @@ class PostController extends Controller{
             Pas::where('post_id', $post->id)->delete();
 
             Ingredient::where('post_id', $post->id)->delete();
+
+            Comment::where('post_id', $post->id)->delete();
 
             $post->delete();
 
