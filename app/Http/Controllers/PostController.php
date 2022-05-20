@@ -118,7 +118,7 @@ class PostController extends Controller{
                 'description' => ['required', 'string', 'max:1000'],
                 'passos.*' => ['required', 'string', 'max:1000'],
                 'ingredients.*' => ['required', 'string', 'max:1000'],
-                'fotos' =>['required', 'image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000'],
+                'fotos' =>['image','mimes:jpg,png,jpeg','dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000'],
                 'dificultat' => ['required', Rule::in(['facil', 'normal', 'dificil'])],
                 'tipus' => ['required', Rule::in(['entrant', 'principal', 'postre'])]
             ]);
@@ -137,7 +137,7 @@ class PostController extends Controller{
                     $pasdb->update();
                     $index += 1;
                 } else {
-                    return abort(405);
+                    return abort(403);
                 }
             }
 
@@ -155,15 +155,18 @@ class PostController extends Controller{
                     $ingredientdb->update();
                     $index += 1;
                 } else {
-                    return abort(405);
+                    return abort(403);
                 }
             }
             
             $image_path = $request->file('fotos');
+
+            if($image_path){
     
-            $path = $image_path->store('posts');
-    
-            $fotoname = preg_replace('/^.+[\\\\\\/]/', '', $path);
+                $path = $image_path->store('posts');
+        
+                $fotoname = preg_replace('/^.+[\\\\\\/]/', '', $path);
+            }
     
             /* Actualització del post */
             $post->titol = $request->input('titol');
@@ -176,7 +179,7 @@ class PostController extends Controller{
             return redirect()->back()
                              ->with(['message'=>'Recepta publicada correctament!']);
         } else {
-            abort(405);
+            abort(403);
         }
         
     }

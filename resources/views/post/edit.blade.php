@@ -146,7 +146,7 @@
                 <label for="fotos" class="col-md-4 col-form-label text-md-end">{{ __('Fotografies de la recepta') }}</label>
 
                 <div class="col-md-6">
-                    <input id="fotos" type="file" class="form-control @error('fotos') is-invalid @enderror" name="fotos" autocomplete="fotos" required>
+                    <input id="fotos" type="file" class="form-control @error('fotos') is-invalid @enderror" name="fotos" autocomplete="fotos">
 
                     @error('fotos')
                         <span class="invalid-feedback" role="alert">
