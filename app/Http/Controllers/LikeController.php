@@ -54,7 +54,7 @@ class LikeController extends Controller{
 
             return response(200);
         } else {
-            return response()->json(['El like ja existeix']);
+            return response(400);
         }
         
 

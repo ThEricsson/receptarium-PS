@@ -54,11 +54,9 @@ class FavoriteController extends Controller{
 
             return response(200);
         } else {
-            return response(409);
+            return response(400);
         }
-        
-
-        
+                
     }
 
     /**
