@@ -38,6 +38,23 @@ Formulario de creación de perfil.
 
 ![imagen](https://user-images.githubusercontent.com/56220682/184491565-57f6f105-b1de-42d1-ace5-d97a9553dbaf.png)
 
+## Crear receta
+
+Para crear una receta tienes que hacer clic en el icono "+" al lado izquierdo de tu perfil, a continuación te redireccionara la a página de creación de recetas, aquí simplemente rellenas el formulario con la información.
+
+![imagen](https://user-images.githubusercontent.com/56220682/184493235-bc424915-4f6d-4811-87bb-302974c38c25.png)
+
+Como podemos ver, el formulario es dinámico, la cantidad de ingredientes y pasos los elige el usuario, eso es gracias a vue.
+
+![imagen](https://user-images.githubusercontent.com/56220682/184493746-fd9326dd-ca9f-4500-9610-dbd98397a71b.png)
+
+Receta creada en la página principal:
+
+![imagen](https://user-images.githubusercontent.com/56220682/184493878-f0b83055-2044-46f4-b054-6e7b960cbe80.png)
+
+## Visualizar receta
+
+Si hacemos clic encima de una receta, la web redirecciona a la página de detalle de esta, aquí podemos ver la descripción, ingredientes y pasos de la receta.
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
