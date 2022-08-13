@@ -52,9 +52,25 @@ Receta creada en la página principal:
 
 ![imagen](https://user-images.githubusercontent.com/56220682/184493878-f0b83055-2044-46f4-b054-6e7b960cbe80.png)
 
-## Visualizar receta
+### Visualizar receta
 
 Si hacemos clic encima de una receta, la web redirecciona a la página de detalle de esta, aquí podemos ver la descripción, ingredientes y pasos de la receta.
+
+![imagen](https://user-images.githubusercontent.com/56220682/184494055-f9a5cd38-a5de-4393-9af7-9e8e72d385fa.png)
+
+#### Más información de la receta
+
+![imagen](https://user-images.githubusercontent.com/56220682/184494107-1bda4312-d81a-4807-903e-5314351fffeb.png)
+
+### Comentarios
+
+![imagen](https://user-images.githubusercontent.com/56220682/184494200-1041af3f-652c-4ac2-85ce-d7886f8be2a2.png)
+
+### Favoritos
+
+Como usuario registrado puedes guardarte tus recetas favoritas dando clic a la estrella de los posts, para poder ver tus recetas favoritas en el buscador aparecerá el botón de búsqueda de favoritos.
+
+![imagen](https://user-images.githubusercontent.com/56220682/184494261-4da2e09e-f539-4f4d-b879-b9dbb998d29c.png)
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
