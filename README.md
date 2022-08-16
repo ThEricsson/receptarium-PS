@@ -1,8 +1,8 @@
 # About
 
-Receptarium es un proyecto desarrollado con Laravel y algo de Vue, el objetivo de este proyecto es crear una red social en la cual los usuarios pueden explorar recetas creadas por otros usuarios sin necesidad de registrarse.
+Receptarium es un proyecto desarrollado con Laravel y algo de Vue junto a una base de datos MySQL, el objetivo de este proyecto es crear una red social en la cual los usuarios pueden explorar recetas creadas por otros usuarios.
 
-Pero si este decide crearse una cuenta, podrá crear sus propias recetas y compartirlas con los otros usuarios, junto a otras funcionalidades, así como guardarse sus recetas favoritas, interactuar con otros usuarios dándole like a sus posts o comentando.
+No es necesario registrarse, pero si este decide crearse una cuenta, podrá crear sus propias recetas y compartirlas con los otros usuarios, junto a otras funcionalidades, así como guardarse sus recetas favoritas, interactuar con otros usuarios dándole like a sus posts o comentando.
 
 Otra funcionalidad muy potente de este proyecto es el sistema de búsqueda, este se puede combinar tanto como gustes, filtrando las publicaciones por nombre, más populares, etc...
 
