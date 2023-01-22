@@ -14,7 +14,7 @@ Run `php artisan serve` for a dev server. Navigate to `http://localhost:8000/`.
 
 ## Screenshots
 
-Algunas capturas de muestra del funcionamiento de forma detallada.
+Algunas capturas que muestran el funcionamiento de forma detallada.
 
 ### Pantalla principal / busqueda
 
